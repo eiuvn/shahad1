@@ -8,60 +8,83 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Refactor Rows and Stack',
+      title: 'Assignment Widgets',
       home: Scaffold(
-        appBar: AppBar(
-          title: Text('Refactor Example'),
-        ),
+        appBar: AppBar(title: Text('Assignment Widgets')),
         body: Column(
           children: [
-            buildRowExample1(),
-            buildRowExample2(),
-            buildStackExample(),
+            Expanded(child: RowAndColumnWidget()),
+            Divider(),
+            Expanded(child: RowAndStackWidget()),
           ],
         ),
       ),
     );
   }
+}
 
-  // Row 1
-  Widget buildRowExample1() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        Icon(Icons.home, color: Colors.blue),
-        Text('Home'),
-        Icon(Icons.settings, color: Colors.grey),
-        Text('Settings'),
-      ],
-    );
-  }
-
-  // Row 2
-  Widget buildRowExample2() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        ElevatedButton(onPressed: () {}, child: Text('Login')),
-        SizedBox(width: 10),
-        ElevatedButton(onPressed: () {}, child: Text('Register')),
-      ],
-    );
-  }
-
-  // Stack example
-  Widget buildStackExample() {
+// Row and Column Widget
+class RowAndColumnWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
     return Container(
-      height: 150,
-      width: 150,
-      margin: EdgeInsets.all(20),
-      color: Colors.grey[300],
-      child: Stack(
-        alignment: Alignment.center,
+      color: Colors.blue[50],
+      padding: EdgeInsets.all(8),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Container(height: 100, width: 100, color: Colors.red),
-          Container(height: 60, width: 60, color: Colors.green),
-          Container(height: 30, width: 30, color: Colors.blue),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(Icons.star, size: 40, color: Colors.blue),
+              Text('Star', style: TextStyle(fontSize: 16)),
+            ],
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(Icons.favorite, size: 40, color: Colors.red),
+              Text('Favorite', style: TextStyle(fontSize: 16)),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// Row and Stack Widget
+class RowAndStackWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.green[50],
+      padding: EdgeInsets.all(8),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          Stack(
+            alignment: Alignment.center,
+            children: [
+              Container(
+                width: 80,
+                height: 80,
+                color: Colors.orange,
+              ),
+              Icon(Icons.access_alarm, size: 40, color: Colors.white),
+            ],
+          ),
+          Stack(
+            alignment: Alignment.center,
+            children: [
+              Container(
+                width: 80,
+                height: 80,
+                color: Colors.purple,
+              ),
+              Icon(Icons.camera_alt, size: 40, color: Colors.white),
+            ],
+          ),
         ],
       ),
     );
